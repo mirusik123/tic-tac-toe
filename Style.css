@@ -1,0 +1,191 @@
+/* Обнуление */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Градиентный фон (всегда виден) */
+.background {
+    position: fixed;
+    inset: 0;
+    background: linear-gradient(-45deg, #ee7752, #e73c7e, #23a6d5, #23d5ab);
+    background-size: 400% 400%;
+    animation: gradient 15s ease infinite;
+    z-index: -2;
+}
+
+@keyframes gradient {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+
+/* Тёмная тема — применяется к html */
+html.dark-theme {
+    filter: invert(1) hue-rotate(180deg);
+}
+html.dark-theme .no-invert,
+html.dark-theme .background {
+    filter: invert(1) hue-rotate(180deg);
+}
+
+/* Эффект стекла */
+.glass-panel {
+    background: rgba(255, 255, 255, 0.15);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border-radius: 20px;
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    padding: 40px;
+    max-width: 500px;
+    text-align: center;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+    z-index: 10;
+}
+
+.glass-header {
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+    padding: 15px;
+    border-radius: 15px;
+    margin-bottom: 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    color: white;
+    text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5);
+}
+
+body {
+    font-family: 'Segoe UI', sans-serif;
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+}
+
+.screen {
+    display: none;
+    text-align: center;
+    color: white;
+    text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5);
+    z-index: 5;
+}
+
+.screen.active {
+    display: block;
+}
+
+.logo {
+    font-size: 2.5em;
+    margin-bottom: 10px;
+    cursor: pointer;
+    user-select: none;
+}
+
+.sponsor-line {
+    margin: 15px 0;
+    font-size: 1.1em;
+    color: white;
+    text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5);
+}
+
+.highlight-sponsor {
+    color: #ffeb3b;
+    font-weight: bold;
+    font-size: 1.4em;
+    text-shadow: 0 0 10px #ffeb3b, 0 0 20px #ff9800;
+    cursor: pointer;
+    animation: pulse 2s infinite;
+    user-select: none;
+}
+
+@keyframes pulse {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.7; }
+}
+
+.board {
+    display: grid;
+    grid-template-columns: repeat(3, 100px);
+    grid-template-rows: repeat(3, 100px);
+    gap: 10px;
+    margin: 20px auto;
+}
+
+.cell {
+    width: 100px;
+    height: 100px;
+    background: rgba(255, 255, 255, 0.2);
+    border: 2px solid rgba(255, 255, 255, 0.4);
+    border-radius: 16px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 3em;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    color: white;
+    position: relative;
+}
+
+.cell::after {
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    border-radius: 16px;
+    pointer-events: none;
+}
+
+.cell.x::after,
+.cell.o::after {
+    animation: fadeInScale 0.3s ease;
+}
+
+@keyframes fadeInScale {
+    0% { opacity: 0; transform: scale(0); }
+    100% { opacity: 1; transform: scale(1); }
+}
+
+.cell.win {
+    box-shadow: 0 0 20px #ffeb3b;
+    animation: pulseWin 1.5s infinite;
+}
+
+@keyframes pulseWin {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.05); }
+}
+
+button {
+    background: rgba(255, 255, 255, 0.2);
+    color: white;
+    border: none;
+    padding: 14px 28px;
+    font-size: 1.1em;
+    border-radius: 12px;
+    cursor: pointer;
+    margin: 10px;
+    backdrop-filter: blur(5px);
+    transition: all 0.3s;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+button:hover {
+    background: rgba(255, 255, 255, 0.3);
+    transform: scale(1.05);
+}
+
+#reset-button, #menu-button {
+    background: rgba(76, 175, 80, 0.3);
+}
+
+#status {
+    margin-top: 20px;
+    font-size: 1.3em;
+    font-weight: bold;
+}

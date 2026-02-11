@@ -1,0 +1,15 @@
+{
+  "name": "tictactoe-mirusik123",
+  "version": "1.0.0",
+  "description": "Крестики-нолики от Mirusik123",
+  "main": "main.js",
+  "scripts": {
+    "start": "electron main.js",
+    "dev": "electron main.js"
+  },
+  "author": "mirusik123",
+  "license": "MIT",
+  "devDependencies": {
+    "electron": "^28.0.0"
+  }
+}

@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>⚡ NovaCore — ehik228 Tribute</title>
+    <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+<!-- Градиентный фон (не подвержен темам) -->
+<div class="background"></div>
+
+<!-- Меню -->
+<div id="menu" class="screen active">
+    <div class="glass-panel">
+        <h1 class="logo">⚡ NovaCore</h1>
+        <p class="sponsor-line">
+            <strong>Создано в VK-звонке с</strong><br>
+            <span class="highlight-sponsor">ehik228</span>
+        </p>
+        <button onclick="startGame('friend')">👥 С другом</button>
+        <button onclick="startGame('ai')">🤖 С ботом</button>
+        <label>
+            Уровень:
+            <select id="ai-level">
+                <option value="easy">Лёгкий</option>
+                <option value="medium">Средний</option>
+                <option value="hard" selected>Сложный</option>
+            </select>
+        </label>
+        <br><br>
+        <button onclick="showSettings()">⚙️ Настройки</button>
+    </div>
+</div>
+
+<!-- Игровое поле -->
+<div id="game" class="screen">
+    <div class="glass-header">
+        <h1>⚡ NovaCore</h1>
+        <div class="stats">
+            X: <span id="score-x">0</span> |
+            O: <span id="score-o">0</span> |
+            Ничьи: <span id="score-draw">0</span>
+        </div>
+    </div>
+
+    <p>Очередь: <span id="current-player">X</span></p>
+    <div class="board" id="board">
+        <div class="cell" data-index="0"></div>
+        <div class="cell" data-index="1"></div>
+        <div class="cell" data-index="2"></div>
+        <div class="cell" data-index="3"></div>
+        <div class="cell" data-index="4"></div>
+        <div class="cell" data-index="5"></div>
+        <div class="cell" data-index="6"></div>
+        <div class="cell" data-index="7"></div>
+        <div class="cell" data-index="8"></div>
+    </div>
+    <button id="reset-button">🔄 Начать заново</button>
+    <button id="menu-button">🏠 В меню</button>
+    <p id="status"></p>
+</div>
+
+<!-- Настройки -->
+<div id="settings" class="screen">
+    <div class="glass-panel">
+        <h2>⚙️ Настройки</h2>
+        <label>
+            <input type="checkbox" id="sound-toggle" checked> 🔊 Звук
+        </label><br><br>
+        <label>
+            <input type="checkbox" id="music-toggle"> 🎵 Музыка
+        </label><br><br>
+        <button onclick="toggleTheme()">🌙 / ☀️ Тема</button><br><br>
+        <button onclick="exportStats()">📤 Экспорт статистики</button><br><br>
+        <button onclick="importStats()">📥 Импорт статистики</button><br><br>
+        <button onclick="resetStats()">🗑 Сбросить статистику</button><br><br>
+        <button onclick="showHistory()">📜 Просмотр истории</button><br><br>
+        <button onclick="goToMenu()">← Назад</button>
+    </div>
+</div>
+
+<!-- История -->
+<div id="history" class="screen">
+    <div class="glass-panel">
+        <h2>📜 История игр</h2>
+        <div id="history-list"></div>
+        <br>
+        <button onclick="goToMenu()">← Назад</button>
+    </div>
+</div>
+
+<!-- Скрытый input для импорта -->
+<input type="file" id="import-file" accept=".json" style="display: none;">
+
+<!-- Скрипт -->
+<script src="script.js"></script>
+</body>
+</html>
